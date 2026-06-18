@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Login Successful - Foodies Nest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #48c479 0%, #2d9e5f 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-box {
+            background: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: slideUp 0.6s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .success-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .success-box h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #48c479;
+            margin-bottom: 10px;
+        }
+        
+        .success-box h3 {
+            font-size: 18px;
+            color: #9c9c9c;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .continue-btn {
+            background: linear-gradient(135deg, #fc8019 0%, #e67e14 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(252, 128, 25, 0.2);
+            font-size: 16px;
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(252, 128, 25, 0.3);
+        }
+        
+        .message {
+            margin-top: 20px;
+            color: #9c9c9c;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-box">
+        <div class="success-icon">✅</div>
+        <h1>Login Successful!</h1>
+        <h3>Welcome to Foodies Nest!</h3>
+        <a href="/" class="continue-btn">Continue Shopping</a>
+        <div class="message">Get ready to explore delicious food options 🍽️</div>
+    </div>
+</body>
+</html>

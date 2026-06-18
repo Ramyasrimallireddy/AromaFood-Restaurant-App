@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Manage Restaurants - Foodies Nest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f1f1f6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1c1c1c;
+        }
+        
+        .add-btn {
+            background: linear-gradient(135deg, #fc8019 0%, #e67e14 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(252, 128, 25, 0.3);
+        }
+        
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .restaurant-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .restaurant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .restaurant-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .restaurant-card:hover .restaurant-image {
+            transform: scale(1.05);
+        }
+        
+        .restaurant-content {
+            padding: 16px;
+        }
+        
+        .restaurant-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1c1c1c;
+            margin-bottom: 8px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .info-label {
+            color: #9c9c9c;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            color: #1c1c1c;
+            font-weight: 600;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-update {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-update:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-delete {
+            background: #e63946;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+        
+        .btn-menu {
+            background: #48c479;
+            color: white;
+        }
+        
+        .btn-menu:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72, 196, 121, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏪 All Restaurants</h1>
+        </div>
+        
+        {% if restuarantsList %}
+            <div class="restaurants-grid">
+                {% for r in restuarantsList %}
+                <div class="restaurant-card">
+                    <img src="{{ r.picture }}" alt="{{ r.restuarant_name }}" class="restaurant-image">
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">{{ r.restuarant_name }}</div>
+                        <div class="info-row">
+                            <span class="info-label">📍 Location</span>
+                            <span class="info-value">{{ r.location }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">🍜 Cuisine</span>
+                            <span class="info-value">{{ r.cuisine }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">⭐ Rating</span>
+                            <span class="info-value">{{ r.rating }}</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="{% url 'open_update_restuarant' r.id %}" class="action-btn btn-update">✎ Update</a>
+                            <a href="{% url 'delete_restuarant' r.id %}" class="action-btn btn-delete" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                            <a href="{% url 'update_menu' r.id %}" class="action-btn btn-menu">🍽 Menu</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 12px;">
+                <div style="font-size: 60px; margin-bottom: 20px;">🏢</div>
+                <h2 style="font-size: 22px; color: #1c1c1c; margin-bottom: 10px;">No Restaurants Found</h2>
+                <p style="color: #9c9c9c;">Start by adding your first restaurant</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

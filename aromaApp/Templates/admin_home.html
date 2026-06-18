@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Admin Dashboard - Foodies Nest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.6s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            color: #1c1c1c;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            color: #9c9c9c;
+            font-size: 16px;
+        }
+        
+        .admin-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(252, 128, 25, 0.15);
+            border-color: #fc8019;
+        }
+        
+        .admin-card-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .admin-card h3 {
+            font-size: 22px;
+            color: #1c1c1c;
+            margin-bottom: 10px;
+        }
+        
+        .admin-card p {
+            color: #9c9c9c;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #fc8019 0%, #e67e14 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(252, 128, 25, 0.2);
+        }
+        
+        .admin-card a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(252, 128, 25, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👨‍💼 Admin Dashboard</h1>
+            <p>Manage your restaurants and menu items</p>
+        </div>
+        
+        <div class="admin-nav">
+            <div class="admin-card">
+                <div class="admin-card-icon">🏪</div>
+                <h3>Add Restaurant</h3>
+                <p>Create a new restaurant and add it to the platform</p>
+                <a href="open_add_restuarant">Add New</a>
+            </div>
+            
+            <div class="admin-card">
+                <div class="admin-card-icon">📋</div>
+                <h3>View Restaurants</h3>
+                <p>Manage and edit your restaurant details</p>
+                <a href="open_show_restuarant">View All</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

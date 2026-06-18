@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Login Failed - Foodies Nest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-box {
+            background: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: slideUp 0.6s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .error-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .error-box h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        
+        .error-box p {
+            color: #9c9c9c;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, #fc8019 0%, #e67e14 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(252, 128, 25, 0.2);
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(252, 128, 25, 0.3);
+        }
+        
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #9c9c9c;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .home-link:hover {
+            color: #fc8019;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <div class="error-icon">❌</div>
+        <h1>Login Failed</h1>
+        <p>Invalid username or password. Please check your credentials and try again.</p>
+        <a href="{% url 'open_signin' %}" class="retry-btn">🔄 Try Again</a>
+        <br>
+        <a href="/" class="home-link">← Back to Home</a>
+    </div>
+</body>
+</html>
